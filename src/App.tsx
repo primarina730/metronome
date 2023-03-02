@@ -1,24 +1,32 @@
+import { Button, TextField } from '@mui/material';
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import sound from "./assets/soundOfMetronome.mp3";
+
 
 function App() {
+  const [tempo,setTempo]=React.useState("");
+
+  const changeTempo=(e:any)=>{
+    setTempo(e.target.value);
+  }
+
+  
+      const startTempo=()=>{
+        const calcTempo:number=(80/60)*1000;
+        setInterval(()=>{
+       
+        const audio =new Audio(sound);
+        audio.play();
+      },calcTempo)
+      }
+   
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>My Metronome</h1>
+     <TextField id="outlined-basic" label="tempo" variant="outlined" onChange={changeTempo} value={tempo}/>
+    <Button onClick={startTempo}>start</Button> 
     </div>
   );
 }
