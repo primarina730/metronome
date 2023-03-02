@@ -11,9 +11,10 @@ function App() {
     setTempo(e.target.value);
   }
 
+  console.log(tempo);
   
       const startTempo=()=>{
-        const calcTempo:number=(80/60)*1000;
+        const calcTempo=(60/parseInt(tempo))*1000;
         setInterval(()=>{
        
         const audio =new Audio(sound);
